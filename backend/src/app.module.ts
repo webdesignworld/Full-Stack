@@ -1,9 +1,10 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ChallengesModule } from './challenges/module/challenges.module';
+import { AuthModule } from './auth/module/auth.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ChallengesModule } from './challenges/challenges.module';
 
 @Module({
   imports: [
@@ -17,8 +18,8 @@ import { ChallengesModule } from './challenges/challenges.module';
       }),
       inject: [ConfigService],
     }),
-
     ChallengesModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

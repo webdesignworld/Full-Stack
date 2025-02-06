@@ -1,16 +1,13 @@
-import LoginForm from "@/components/auth/LoginForm";
-import RegisterForm from "@/components/auth/RegisterForm"
+import ChallengesListing from "../challenges/ChallengesListing";
 
 
 const Dashboard = () => {
   return ( 
 <>
 
-<div>
- {/* <LoginForm/> */}
-{/* <RegisterForm/> */}
-</div>
+<ChallengesListing/>
    
+ 
 </>
 
    );

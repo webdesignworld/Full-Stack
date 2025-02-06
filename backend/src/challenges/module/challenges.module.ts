@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { ChallengesController } from './challenges.controller';
-import { ChallengesService } from './challenges.service';
-import { AuthModule } from '../auth/auth.module';
-import { Challenge, ChallengeSchema } from './schemas/challenge.schema';
-import { Manager, ManagerSchema } from './schemas/manager.schema';
+import { ChallengesController } from '../controller/challenges.controller';
+import { ChallengesService } from '../service/challenges.service';
+import { AuthModule } from '../../auth/module/auth.module';
+import { Challenge, ChallengeSchema } from '../../schemas/challenge.schema';
+import { Manager, ManagerSchema } from '../../auth/schema/manager.schema';
 
 @Module({
   imports: [
