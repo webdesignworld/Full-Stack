@@ -24,7 +24,6 @@ export class Challenge {
   @Prop({ type: String, enum: DifficultyLevel, required: true })
   difficulty_level: DifficultyLevel;
 
- 
   @Prop({ type: Number })
   managerId: number;
 }

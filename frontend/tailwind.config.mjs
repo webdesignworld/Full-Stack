@@ -8,6 +8,9 @@ export default {
   ],
   theme: {
   	extend: {
+		gridTemplateColumns: {
+			'70/30': '70% 28%'
+		},
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',

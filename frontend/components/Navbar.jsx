@@ -37,7 +37,7 @@ const Navbar = () => {
                 <Link href="/challenge-form">Challenges</Link> 
               </DropdownMenuItem>
               <DropdownMenuItem className="bg-purple-500">
-                <Link href="/auth">Logout</Link>
+                <Link href="/auth/signin">Logout</Link>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

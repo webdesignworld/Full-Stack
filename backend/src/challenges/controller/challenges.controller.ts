@@ -19,7 +19,7 @@ import { AuthenticatedUser } from '../../auth/decorator/authenticated-user.decor
 import { RolesGuard } from '../../auth/guards/roles.guard';
 
 @Controller('challenges')
-@UseGuards(AuthGuard, RolesGuard)
+// @UseGuards(AuthGuard, RolesGuard)
 @Roles('manager') //all routes
 export class ChallengesController {
   constructor(private readonly challengesService: ChallengesService) {}

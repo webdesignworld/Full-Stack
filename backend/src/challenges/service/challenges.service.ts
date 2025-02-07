@@ -13,7 +13,7 @@ export class ChallengesService {
   ) {}
 
   async findAll(): Promise<Challenge[]> {
-    return this.challengeModel.find().lean().exec(); // .lean() improves performance
+    return this.challengeModel.find().lean().exec(); 
   }
 
   async findById(id: string): Promise<Challenge> {
