@@ -32,10 +32,6 @@ const Navbar = () => {
               </Avatar>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
-              <DropdownMenuItem>
-                {/* change to home page */}
-                <Link href="/challenge-form">Challenges</Link> 
-              </DropdownMenuItem>
               <DropdownMenuItem className="bg-purple-500">
                 <Link href="/auth/signin">Logout</Link>
               </DropdownMenuItem>

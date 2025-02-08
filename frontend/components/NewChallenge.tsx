@@ -22,7 +22,7 @@ const NewChallengeForm = () => {
     title: "",
     category: "",
     description: "",
-    level: "Easy",
+    difficulty_level: "",
   });
   const [error, setError] = useState<string | null>(null);
 
@@ -33,7 +33,7 @@ const NewChallengeForm = () => {
   };
 
   const handleSelectChange = (value: string) => {
-    setChallenge({ ...challenge, level: value });
+    setChallenge({ ...challenge, difficulty_level: value });
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -58,7 +58,7 @@ const NewChallengeForm = () => {
       );
 
       console.log("Response:", res.data);
-      router.push("/challenges");
+      router.push("/");
     } catch (err: any) {
       setError(
         err.response?.data?.message ||

@@ -56,8 +56,8 @@ const EditChallenges = () => {
     setSaving(true);
 
     try {
-      const response = await fetch(`/api/challenges/${id}`, {
-        method: "PUT",
+      const response = await fetch(`/challenges/${id}`, {
+        method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           title,
@@ -74,7 +74,7 @@ const EditChallenges = () => {
 
       if (response.ok) {
         toast({ title: "Success!", description: "Challenge updated successfully." });
-        router.push("/challenges");
+        router.push("/");
       } else {
         toast({ title: "Error", description: result.message, variant: "destructive" });
       }

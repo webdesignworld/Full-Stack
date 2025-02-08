@@ -11,15 +11,15 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 
 const EditChallengePage = () => {
-  // Retrieve the dynamic id parameter from the URL
   const { id } = useParams();
+  console.log("EditChallengePage id:", id);
   const router = useRouter();
   const { toast } = useToast();
   
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
 
-  // Challenge state variables
+
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
   const [level, setLevel] = useState("easy");
@@ -31,10 +31,10 @@ const EditChallengePage = () => {
   useEffect(() => {
     const fetchChallenge = async () => {
       try {
-        // Retrieve the token from localStorage
+  
         const token = localStorage.getItem("token");
-        // Build the API URL using your NestJS API base URL and challenge id
-        const apiUrl = `${process.env.NEXT_PUBLIC_NESTJS_API_URL}/challenges/${id}`;
+      
+        const apiUrl = `${process.env.NEXT_PUBLIC_BACKEND_URL}/challenges/${id}`;
         
         const response = await fetch(apiUrl, {
           method: "GET",
@@ -67,14 +67,15 @@ const EditChallengePage = () => {
   }, [id, toast]);
 
   const handleSubmit = async () => {
+    console.log("handleSubmit triggered for challenge ID:", id);
     setSaving(true);
 
     try {
       const token = localStorage.getItem("token");
-      const apiUrl = `${process.env.NEXT_PUBLIC_NESTJS_API_URL}/challenges/${id}`;
+      const apiUrl = `${process.env.NEXT_PUBLIC_BACKEND_URL}/challenges/${id}`;
       
       const response = await fetch(apiUrl, {
-        method: "PUT",
+        method: "PATCH",
         headers: {
           "Content-Type": "application/json",
           Authorization: token ? `Bearer ${token}` : "",
@@ -82,7 +83,7 @@ const EditChallengePage = () => {
         body: JSON.stringify({
           title,
           category,
-          level,
+        level,
           description,
           code,
           language,
@@ -190,3 +191,4 @@ const EditChallengePage = () => {
 };
 
 export default EditChallengePage;
+

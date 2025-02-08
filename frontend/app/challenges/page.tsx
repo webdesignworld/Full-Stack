@@ -1,7 +1,7 @@
 
 "use client";
 
-import ChallengesListing from "@/components/ChallengesListing"; 
+import ChallengesListing from "../challenges/ChallengesListing"; 
 export default function ChallengesPage() {
   return (
     <div>

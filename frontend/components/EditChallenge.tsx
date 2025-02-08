@@ -17,7 +17,6 @@ const EditChallenge = () => {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
 
-  // Challenge state variables
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
   const [level, setLevel] = useState("easy");
@@ -29,11 +28,11 @@ const EditChallenge = () => {
   useEffect(() => {
     const fetchChallenge = async () => {
       try {
-        // Retrieve the token from localStorage
+ 
         const token = localStorage.getItem("token");
-        // Build the API URL using your NestJS API base URL and challenge id
-        const apiUrl = `${process.env.NEXT_PUBLIC_NESTJS_API_URL}/challenges/${id}`;
-        
+ 
+        const apiUrl = `${process.env.NEXT_PUBLIC_BACKEND_URL}/challenges/${id}`;
+
         const response = await fetch(apiUrl, {
           method: "GET",
           headers: {
@@ -41,13 +40,13 @@ const EditChallenge = () => {
             Authorization: token ? `Bearer ${token}` : "",
           },
         });
-        
+
         const data = await response.json();
-        
+
         if (!response.ok) {
           throw new Error(data.message);
         }
-        
+
         setTitle(data.title);
         setCategory(data.category);
         setLevel(data.level);
@@ -55,7 +54,11 @@ const EditChallenge = () => {
         setCode(data.code);
         setLanguage(data.language);
       } catch (error: any) {
-        toast({ title: "Error", description: error.message, variant: "destructive" });
+        toast({
+          title: "Error",
+          description: error.message,
+          variant: "destructive",
+        });
       } finally {
         setLoading(false);
       }
@@ -65,12 +68,13 @@ const EditChallenge = () => {
   }, [id, toast]);
 
   const handleSubmit = async () => {
+    console.log("handleSubmit triggered for challenge ID:", id);
     setSaving(true);
 
     try {
       const token = localStorage.getItem("token");
-      const apiUrl = `${process.env.NEXT_PUBLIC_NESTJS_API_URL}/challenges/${id}`;
-      
+      const apiUrl = `${process.env.NEXT_PUBLIC_BACKEND_URL}/challenges/${id}`;
+
       const response = await fetch(apiUrl, {
         method: "PUT",
         headers: {
@@ -91,14 +95,25 @@ const EditChallenge = () => {
       setSaving(false);
 
       if (response.ok) {
-        toast({ title: "Success!", description: "Challenge updated successfully." });
-        router.push("/challenges");
+        toast({
+          title: "Success!",
+          description: "Challenge updated successfully.",
+        });
+        router.push("/");
       } else {
-        toast({ title: "Error", description: result.message, variant: "destructive" });
+        toast({
+          title: "Error",
+          description: result.message,
+          variant: "destructive",
+        });
       }
     } catch (error: any) {
       setSaving(false);
-      toast({ title: "Error", description: "Network error. Please try again.", variant: "destructive" });
+      toast({
+        title: "Error",
+        description: "Network error. Please try again.",
+        variant: "destructive",
+      });
     }
   };
 
@@ -106,7 +121,6 @@ const EditChallenge = () => {
 
   return (
     <div className="flex w-full h-screen">
-      {/* Left Column: Form fields */}
       <div className="w-1/2 p-8 bg-gray-100">
         <h1 className="text-2xl mb-4 font-semibold mt-4">Edit Challenge</h1>
 
@@ -148,7 +162,6 @@ const EditChallenge = () => {
         ></textarea>
       </div>
 
-      {/* Right Column: Code editor and additional settings */}
       <div className="w-1/2 p-8 bg-gray-200">
         <Label>Language*</Label>
         <select
@@ -179,7 +192,11 @@ const EditChallenge = () => {
           style={{ fontSize: `${fontSize}px` }}
         />
 
-        <Button onClick={handleSubmit} disabled={saving} className="bg-purple-500 mt-4">
+        <Button
+          onClick={handleSubmit}
+          disabled={saving}
+          className="bg-purple-500 mt-4"
+        >
           {saving ? "Saving..." : "Save Changes"}
         </Button>
       </div>
